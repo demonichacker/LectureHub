@@ -1,4 +1,4 @@
-// CourseVault Local Storage Database Utility
+// LectureHub Local Storage Database Utility
 
 export interface Faculty {
   id: string
@@ -58,161 +58,158 @@ export interface DownloadStats {
 
 // Initial Mock Data
 const INITIAL_FACULTIES: Faculty[] = [
-  { id: 'sci', name: 'Faculty of Science', code: 'SCI' },
-  { id: 'eng', name: 'Faculty of Engineering', code: 'ENG' },
-  { id: 'soc', name: 'Faculty of Social Sciences', code: 'SOC' },
+  { id: 'part1', name: 'Fundamentals', code: 'FUND' },
+  { id: 'part2', name: 'Advanced Topics', code: 'ADV' },
+  { id: 'part3', name: 'Practical Applications', code: 'PRAC' },
 ]
 
 const INITIAL_DEPARTMENTS: Department[] = [
-  { id: 'csc', name: 'Computer Science', facultyId: 'sci' },
-  { id: 'mth', name: 'Mathematics', facultyId: 'sci' },
-  { id: 'eee', name: 'Electrical Engineering', facultyId: 'eng' },
-  { id: 'eco', name: 'Economics', facultyId: 'soc' },
+  { id: 'intro', name: 'Introduction', facultyId: 'part1' },
+  { id: 'core', name: 'Core Concepts', facultyId: 'part1' },
+  { id: 'specialized', name: 'Specialized Topics', facultyId: 'part2' },
+  { id: 'projects', name: 'Projects & Assignments', facultyId: 'part3' },
 ]
 
 const INITIAL_LECTURERS: Lecturer[] = [
-  { id: 'turing', name: 'Dr. Alan Turing', email: 'a.turing@univ.edu', departmentId: 'csc' },
-  { id: 'lovelace', name: 'Prof. Ada Lovelace', email: 'a.lovelace@univ.edu', departmentId: 'csc' },
-  { id: 'gauss', name: 'Dr. Carl Gauss', email: 'c.gauss@univ.edu', departmentId: 'mth' },
-  { id: 'tesla', name: 'Prof. Nikola Tesla', email: 'n.tesla@univ.edu', departmentId: 'eee' },
-  { id: 'keynes', name: 'Dr. John Keynes', email: 'j.keynes@univ.edu', departmentId: 'eco' },
+  { id: 'instructor', name: 'Instructor', email: 'instructor@lecture.edu', departmentId: 'intro' },
+  { id: 'mentor', name: 'Teaching Assistant', email: 'ta@lecture.edu', departmentId: 'core' },
 ]
 
 const INITIAL_COURSES: Course[] = [
   {
-    id: 'csc-301',
-    code: 'CSC 301',
-    name: 'Introduction to Computer Programming',
-    description: 'Learn the fundamental concepts of programming including variables, control structures, functions, and arrays using Python.',
-    departmentId: 'csc',
-    level: 300,
+    id: 'lec-101',
+    code: 'LEC 101',
+    name: 'Week 1 - Introduction & Fundamentals',
+    description: 'First week covering core concepts and basics.',
+    departmentId: 'intro',
+    level: 100,
     semester: 1,
-    lecturerId: 'turing',
+    lecturerId: 'instructor',
   },
   {
-    id: 'csc-302',
-    code: 'CSC 302',
-    name: 'Data Structures and Algorithms',
-    description: 'A study of memory models, stacks, queues, linked lists, binary search trees, sorting, searching, and algorithmic complexity.',
-    departmentId: 'csc',
+    id: 'lec-102',
+    code: 'LEC 102',
+    name: 'Week 2 - Building on Basics',
+    description: 'Second week developing foundational knowledge further.',
+    departmentId: 'intro',
+    level: 100,
+    semester: 1,
+    lecturerId: 'instructor',
+  },
+  {
+    id: 'lec-201',
+    code: 'LEC 201',
+    name: 'Week 3 - Core Concepts Deep Dive',
+    description: 'Comprehensive exploration of core subject matter.',
+    departmentId: 'core',
+    level: 200,
+    semester: 1,
+    lecturerId: 'mentor',
+  },
+  {
+    id: 'lec-202',
+    code: 'LEC 202',
+    name: 'Week 4 - Advanced Techniques',
+    description: 'Building expertise with advanced methodologies.',
+    departmentId: 'core',
+    level: 200,
+    semester: 2,
+    lecturerId: 'mentor',
+  },
+  {
+    id: 'lec-301',
+    code: 'LEC 301',
+    name: 'Specialized Topic - Part A',
+    description: 'In-depth exploration of specialized topics.',
+    departmentId: 'specialized',
+    level: 300,
+    semester: 1,
+    lecturerId: 'instructor',
+  },
+  {
+    id: 'lec-302',
+    code: 'LEC 302',
+    name: 'Specialized Topic - Part B',
+    description: 'Continued specialized study and applications.',
+    departmentId: 'specialized',
     level: 300,
     semester: 2,
-    lecturerId: 'lovelace',
-  },
-  {
-    id: 'mth-301',
-    code: 'MTH 301',
-    name: 'Calculus I',
-    description: 'Limits, continuity, derivatives of algebraic and trigonometric functions, applications of derivatives, integration, and area.',
-    departmentId: 'mth',
-    level: 300,
-    semester: 1,
-    lecturerId: 'gauss',
-  },
-  {
-    id: 'mth-302',
-    code: 'MTH 302',
-    name: 'Linear Algebra',
-    description: 'Systems of linear equations, matrices, determinants, vector spaces, linear transformations, eigenvalues, and eigenvectors.',
-    departmentId: 'mth',
-    level: 300,
-    semester: 1,
-    lecturerId: 'gauss',
-  },
-  {
-    id: 'eee-301',
-    code: 'EEE 301',
-    name: 'Basic Circuit Theory',
-    description: 'Circuit elements, Ohm\'s law, Kirchhoff\'s laws, network theorems, transient analysis of RL, RC, and RLC circuits.',
-    departmentId: 'eee',
-    level: 300,
-    semester: 1,
-    lecturerId: 'tesla',
-  },
-  {
-    id: 'eco-301',
-    code: 'ECO 301',
-    name: 'Principles of Economics',
-    description: 'Microeconomics and macroeconomics concepts including supply and demand, market structures, GDP, inflation, and fiscal policies.',
-    departmentId: 'eco',
-    level: 300,
-    semester: 1,
-    lecturerId: 'keynes',
+    lecturerId: 'instructor',
   },
 ]
 
 const INITIAL_MATERIALS: Material[] = [
   {
     id: 'mat-1',
-    title: 'CSC 301 Lecture Notes - Python Syntax and Data Types',
-    fileName: 'csc301_week1_python_intro.pdf',
+    title: 'Week 1 - Lecture Notes',
+    fileName: 'week1_notes.pdf',
     fileSize: '1.2 MB',
     uploadDate: '2026-06-01',
     downloadCount: 142,
-    courseId: 'csc-301',
-    description: 'Week 1 introduction slide notes. Details variable declarations, numeric types, strings, and standard output methods in Python.',
-    contentMock: '## Lecture 1: Python Introduction\n\n- Python is a high-level, interpreted programming language.\n- Known for readability and clean syntax.\n- Created by Guido van Rossum, released in 1991.\n\n### Basic Syntax\n\n```python\n# This is a comment\nname = "Student"\nprint("Hello, " + name)\n```\n\n### Primitive Types\n- Integer: `x = 10`\n- Float: `y = 10.5`\n- String: `z = "University"`\n- Boolean: `is_active = True`',
+    courseId: 'lec-101',
+    description: 'Comprehensive lecture notes for Week 1 covering introduction and fundamentals.',
+    contentMock: '# Week 1: Introduction & Fundamentals\n\n## Topic Overview\n- Core concepts and definitions\n- Essential terminology\n- Historical context\n\n## Key Points\n1. Introduction to subject matter\n2. Foundational principles\n3. Basic applications\n\n## Review Questions\n- What are the main concepts covered?\n- How do these principles apply?\n- Can you provide real-world examples?',
   },
   {
     id: 'mat-2',
-    title: 'CSC 301 Lab Guide - Working with Loops and Functions',
-    fileName: 'csc301_lab_guide_loops.pdf',
+    title: 'Week 1 - Practice Problems & Solutions',
+    fileName: 'week1_problems.pdf',
     fileSize: '840 KB',
-    uploadDate: '2026-06-08',
+    uploadDate: '2026-06-02',
     downloadCount: 98,
-    courseId: 'csc-301',
-    description: 'Hands-on laboratory manual containing exercises for nested loops, while loops, function definitions, and parameters.',
-    contentMock: '## Week 2 Lab: Loops and Functions\n\n### Objective\nUnderstand iteration structures and code modularization.\n\n### For Loops\n```python\nfor i in range(5):\n    print("Iteration:", i)\n```\n\n### Functions\n```python\ndef greet(user):\n    return f"Welcome, {user}!"\n\nprint(greet("Ada"))\n```\n\n### Exercises\n1. Write a program to display the Fibonacci sequence up to N terms.\n2. Create a function that determines if a number is prime.',
+    courseId: 'lec-101',
+    description: 'Practice problems with detailed solutions for Week 1 material.',
+    contentMock: '# Week 1: Practice Problems\n\n## Problem Set 1\n\n### Problem 1\nDefine and explain the main concept.\nSolution: [Detailed explanation]\n\n### Problem 2\nProvide a real-world application.\nSolution: [Example with explanation]\n\n### Problem 3\nCompare and contrast key ideas.\nSolution: [Comparative analysis]',
   },
   {
     id: 'mat-3',
-    title: 'CSC 302 - Binary Search Trees & AVL Trees Guide',
-    fileName: 'csc302_binary_search_trees.pdf',
+    title: 'Week 2 - Lecture Slides',
+    fileName: 'week2_slides.pdf',
     fileSize: '2.4 MB',
-    uploadDate: '2026-06-12',
+    uploadDate: '2026-06-08',
     downloadCount: 215,
-    courseId: 'csc-302',
-    description: 'In-depth guide on tree nodes, BST operations (insertion, deletion, search) and self-balancing AVL trees with rotations.',
-    contentMock: '## Binary Search Trees (BST)\n\nA binary search tree is a tree-based data structure where each node has at most two children, and for any node, left subtree elements are smaller, right subtree elements are larger.\n\n### Time Complexity\n- Search: O(log n) average, O(n) worst case.\n- Insertion: O(log n) average.\n- Deletion: O(log n) average.\n\n### AVL Trees\nSelf-balancing binary search trees where the difference in heights of left and right subtrees (balance factor) cannot exceed 1. Supports single and double rotations (LL, RR, LR, RL) to restore balance.',
+    courseId: 'lec-102',
+    description: 'Slide presentation for Week 2 lectures.',
+    contentMock: '# Week 2: Building on Basics\n\n## Slide 1: Review\n- Quick recap of Week 1\n- Connection to new material\n\n## Slide 2: New Concepts\n- Expanding understanding\n- Deeper exploration\n\n## Slide 3: Applications\n- Practical examples\n- Industry use cases',
   },
   {
     id: 'mat-4',
-    title: 'MTH 301 Limit Theorems & Proofs',
-    fileName: 'mth301_limit_theorems.pdf',
+    title: 'Week 3 - Core Concepts Handout',
+    fileName: 'week3_handout.pdf',
     fileSize: '1.5 MB',
-    uploadDate: '2026-06-02',
+    uploadDate: '2026-06-12',
     downloadCount: 310,
-    courseId: 'mth-301',
-    description: 'Formal mathematical proofs and examples of limit rules including squeeze theorem, L\'Hopital\'s rule, and infinite limits.',
-    contentMock: '## Limits & Continuity\n\n### Definition of Limit\nLet f(x) be a function defined on an open interval containing c. We say the limit of f(x) as x approaches c is L if for every ε > 0 there exists a δ > 0 such that |f(x) - L| < ε whenever 0 < |x - c| < δ.\n\n### Limit Laws\n1. Sum Law: lim (f(x) + g(x)) = lim f(x) + lim g(x)\n2. Squeeze Theorem: If f(x) <= g(x) <= h(x) and lim f(x) = lim h(x) = L, then lim g(x) = L.\n3. L\'Hopital\'s Rule: Used for indeterminate forms (0/0 or inf/inf). Take derivatives of numerator and denominator.',
+    courseId: 'lec-201',
+    description: 'Detailed handout covering core concepts in depth.',
+    contentMock: '# Week 3: Core Concepts Deep Dive\n\n## Section 1: Foundations\n- Building blocks of the subject\n- Interconnected concepts\n\n## Section 2: Theory\n- Theoretical frameworks\n- Mathematical foundations\n\n## Section 3: Practice\n- Worked examples\n- Step-by-step solutions',
   },
   {
     id: 'mat-5',
-    title: 'MTH 302 Matrix Operations and Echelon Forms',
-    fileName: 'mth302_matrices_echelon.pdf',
+    title: 'Week 4 - Advanced Techniques Guide',
+    fileName: 'week4_techniques.pdf',
     fileSize: '1.8 MB',
-    uploadDate: '2026-06-11',
+    uploadDate: '2026-06-14',
     downloadCount: 87,
-    courseId: 'mth-302',
-    description: 'Matrix computations, Row-Reduced Echelon Form (RREF), Gauss-Jordan elimination, and systems of linear equations solutions.',
-    contentMock: '## Linear Systems & Matrices\n\n### System of Equations\nAn m x n system of equations can be represented as AX = B.\n\n### Row-Reduced Echelon Form (RREF)\nRules:\n1. All non-zero rows are above any zero rows.\n2. The leading coefficient of a non-zero row is always strictly to the right of the leading coefficient of the row above it.\n3. Leading coefficients are 1.\n4. Columns containing a leading 1 have zeros elsewhere.\n\n### Gauss-Jordan Elimination\nApply elementary row operations to reduce the augmented matrix [A|B] to [I|X], yielding the system solutions.',
+    courseId: 'lec-202',
+    description: 'Comprehensive guide to advanced techniques and methodologies.',
+    contentMock: '# Week 4: Advanced Techniques\n\n## Technique 1: Method Overview\n- When to use\n- Step-by-step procedure\n- Example implementation\n\n## Technique 2: Optimization\n- Efficiency considerations\n- Best practices\n- Common pitfalls\n\n## Technique 3: Troubleshooting\n- Problem-solving strategies\n- Case studies',
   },
   {
     id: 'mat-6',
-    title: 'EEE 301 Kirchhoff\'s Voltage and Current Laws Notes',
-    fileName: 'eee301_kcl_kvl.pdf',
+    title: 'Specialized Topics - Part A Notes',
+    fileName: 'special_part_a.pdf',
     fileSize: '950 KB',
-    uploadDate: '2026-06-05',
+    uploadDate: '2026-06-16',
     downloadCount: 165,
-    courseId: 'eee-301',
-    description: 'Detailed circuits study notes detailing KCL, KVL, nodal and mesh analysis equations with practice diagrams.',
-    contentMock: '## Kirchhoff\'s Circuit Laws\n\n### Kirchhoff\'s Current Law (KCL)\n- The algebraic sum of currents entering a node (or a closed boundary) is zero.\n- Based on the law of conservation of charge.\n- Σ I_in = Σ I_out\n\n### Kirchhoff\'s Voltage Law (KVL)\n- The algebraic sum of all voltages around any closed loop in a circuit is zero.\n- Based on the law of conservation of energy.\n- Σ V = 0\n\n### Node Voltage Method\n1. Select a reference node (ground).\n2. Assign voltages to non-reference nodes.\n3. Apply KCL to each non-reference node.',
+    courseId: 'lec-301',
+    description: 'In-depth notes on specialized topics Part A.',
+    contentMock: '# Specialized Topics: Part A\n\n## Introduction to Specialization\n- Why this topic matters\n- Real-world applications\n\n## Deep Dive\n- Advanced concepts\n- Complex scenarios\n- Expert insights\n\n## Summary\n- Key takeaways\n- Connection to Part B',
   },
 ]
 
 const INITIAL_LOGS: ActivityLog[] = [
-  { id: 'log-1', action: 'System Initialized', details: 'Preloaded default CourseVault academic database.', timestamp: '2026-06-18T12:00:00.000Z' },
-  { id: 'log-2', action: 'Material Uploaded', details: 'Added CSC 202 - Binary Search Trees & AVL Trees Guide.', timestamp: '2026-06-18T14:30:00.000Z' },
+  { id: 'log-1', action: 'System Initialized', details: 'LectureHub initialized with default lecture database.', timestamp: '2026-06-18T12:00:00.000Z' },
+  { id: 'log-2', action: 'Material Uploaded', details: 'Added Week 1 lecture materials.', timestamp: '2026-06-18T14:30:00.000Z' },
 ]
 
 // LocalStorage helpers (safe for SSR)
@@ -238,30 +235,24 @@ const setStorageItem = <T>(key: string, value: T): void => {
   }
 }
 
-export const getFaculties = (): Faculty[] => getStorageItem('cv_faculties', INITIAL_FACULTIES)
-export const getDepartments = (): Department[] => getStorageItem('cv_departments', INITIAL_DEPARTMENTS)
-export const getLecturers = (): Lecturer[] => getStorageItem('cv_lecturers', INITIAL_LECTURERS)
+export const getFaculties = (): Faculty[] => getStorageItem('lh_faculties', INITIAL_FACULTIES)
+export const getDepartments = (): Department[] => getStorageItem('lh_departments', INITIAL_DEPARTMENTS)
+export const getLecturers = (): Lecturer[] => getStorageItem('lh_lecturers', INITIAL_LECTURERS)
 
 export const getCourses = (): Course[] => {
-  const courses = getStorageItem('cv_courses', INITIAL_COURSES)
-  // Auto-upgrade old stored courses to 300 Level
-  if (courses.some(c => c.level !== 300)) {
-    saveCourses(INITIAL_COURSES)
-    saveMaterials(INITIAL_MATERIALS)
-    return INITIAL_COURSES
-  }
+  const courses = getStorageItem('lh_courses', INITIAL_COURSES)
   return courses
 }
 
-export const getMaterials = (): Material[] => getStorageItem('cv_materials', INITIAL_MATERIALS)
-export const getActivityLogs = (): ActivityLog[] => getStorageItem('cv_logs', INITIAL_LOGS)
+export const getMaterials = (): Material[] => getStorageItem('lh_materials', INITIAL_MATERIALS)
+export const getActivityLogs = (): ActivityLog[] => getStorageItem('lh_logs', INITIAL_LOGS)
 
-export const saveFaculties = (data: Faculty[]) => setStorageItem('cv_faculties', data)
-export const saveDepartments = (data: Department[]) => setStorageItem('cv_departments', data)
-export const saveLecturers = (data: Lecturer[]) => setStorageItem('cv_lecturers', data)
-export const saveCourses = (data: Course[]) => setStorageItem('cv_courses', data)
-export const saveMaterials = (data: Material[]) => setStorageItem('cv_materials', data)
-export const saveActivityLogs = (data: ActivityLog[]) => setStorageItem('cv_logs', data)
+export const saveFaculties = (data: Faculty[]) => setStorageItem('lh_faculties', data)
+export const saveDepartments = (data: Department[]) => setStorageItem('lh_departments', data)
+export const saveLecturers = (data: Lecturer[]) => setStorageItem('lh_lecturers', data)
+export const saveCourses = (data: Course[]) => setStorageItem('lh_courses', data)
+export const saveMaterials = (data: Material[]) => setStorageItem('lh_materials', data)
+export const saveActivityLogs = (data: ActivityLog[]) => setStorageItem('lh_logs', data)
 
 // Add activity log utility
 export const logActivity = (action: string, details: string) => {
@@ -324,7 +315,7 @@ stream
 BT
 /F1 18 Tf
 50 720 Td
-(CourseVault Digital eLibrary) Tj
+(LectureHub Materials Library) Tj
 /F1 12 Tf
 0 -30 Td
 (Document Title: ${material.title}) Tj
@@ -335,7 +326,7 @@ BT
 0 -20 Td
 (Date Downloaded: ${new Date().toLocaleDateString()}) Tj
 0 -40 Td
-(Thank you for using CourseVault. Keep learning!) Tj
+(Thank you for using LectureHub. Keep learning!) Tj
 ET
 endstream
 endobj

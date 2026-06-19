@@ -17,7 +17,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     // Read from localStorage on mount
-    const savedTheme = localStorage.getItem('cv_theme') as Theme
+    const savedTheme = localStorage.getItem('lh_theme') as Theme
     const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
     const initialTheme = savedTheme || (systemPrefersDark ? 'dark' : 'light')
     
@@ -34,7 +34,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const toggleTheme = () => {
     const nextTheme = theme === 'light' ? 'dark' : 'light'
     setTheme(nextTheme)
-    localStorage.setItem('cv_theme', nextTheme)
+    localStorage.setItem('lh_theme', nextTheme)
     
     if (nextTheme === 'dark') {
       document.documentElement.classList.add('dark')
