@@ -11,8 +11,8 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'LectureHub - Lecture Materials Library',
-  description: 'Simple and organized lecture materials, notes, and resources repository.',
+  title: 'EduVault - Educational Materials Library',
+  description: 'Simple and organized educational materials, notes, and resources repository.',
   generator: 'v0.app',
   icons: {
     icon: [

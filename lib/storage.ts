@@ -1,4 +1,4 @@
-// LectureHub Local Storage Database Utility
+// EduVault Local Storage Database Utility
 
 export interface Faculty {
   id: string

@@ -65,7 +65,7 @@ export default function AdminPanel() {
 
   const handleSignIn = (e: React.FormEvent) => {
     e.preventDefault()
-    if (email === 'admin@lecturehub.edu' && password === 'admin123') {
+    if (email === 'admin@eduvault.edu' && password === 'admin123') {
       setIsLoggedIn(true)
       setAuthError('')
       sessionStorage.setItem('lh_admin_auth', 'true')
@@ -213,12 +213,12 @@ export default function AdminPanel() {
           <div className="text-center space-y-2">
             <Lock className="h-8 w-8 text-primary mx-auto" />
             <h1 className="text-2xl font-bold">Admin Panel</h1>
-            <p className="text-sm text-muted-foreground">Manage your lecture materials</p>
+            <p className="text-sm text-muted-foreground">Manage your educational materials</p>
           </div>
 
           <div className="bg-primary/10 border border-primary/20 rounded-lg p-4 text-xs space-y-2">
             <p className="font-semibold">Demo Credentials:</p>
-            <p>Email: <code className="bg-background px-1 py-0.5 rounded">admin@lecturehub.edu</code></p>
+            <p>Email: <code className="bg-background px-1 py-0.5 rounded">admin@eduvault.edu</code></p>
             <p>Password: <code className="bg-background px-1 py-0.5 rounded">admin123</code></p>
           </div>
 
@@ -236,7 +236,7 @@ export default function AdminPanel() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="w-full px-3 py-2 border border-border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary/30"
-                placeholder="admin@lecturehub.edu"
+                placeholder="admin@eduvault.edu"
               />
             </div>
             <div>

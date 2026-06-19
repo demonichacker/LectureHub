@@ -94,7 +94,7 @@ export default function Home() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <FileText className="h-5 w-5 text-primary" />
-            <span className="font-bold text-sm tracking-tight">LectureHub</span>
+            <span className="font-bold text-sm tracking-tight">EduVault</span>
           </div>
           <div className="flex items-center gap-3">
             <Link href="/admin" className="text-xs font-semibold text-muted-foreground hover:text-foreground transition-colors px-3 py-1.5 rounded-lg hover:bg-muted">
@@ -255,7 +255,7 @@ export default function Home() {
       {/* Footer */}
       <footer className="border-t border-border mt-16 py-8">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 text-center text-xs text-muted-foreground">
-          <p>LectureHub © 2026</p>
+          <p>EduVault © 2026</p>
         </div>
       </footer>
 
