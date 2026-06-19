@@ -11,8 +11,8 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'EduVault - Educational Materials Library',
-  description: 'Simple and organized educational materials, notes, and resources repository.',
+  title: 'MindFlow - Learning Materials Hub',
+  description: 'Smart learning platform with organized materials, notes, and educational resources.',
   generator: 'v0.app',
   icons: {
     icon: [

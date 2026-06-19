@@ -1,4 +1,4 @@
-// EduVault Local Storage Database Utility
+// MindFlow Local Storage Database Utility
 
 export interface Faculty {
   id: string
